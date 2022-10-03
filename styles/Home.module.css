@@ -157,7 +157,7 @@
   margin: 0
 }
 
-.listItem .listAvatar {
+.listItem img {
   height: 40px;
   max-height: 40px !important;
   border-radius: 50%;

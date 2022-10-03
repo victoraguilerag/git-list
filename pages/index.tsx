@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import SearchBar from '../src/components/searchBar'
 import { getCommits, getRepos } from '../src/api'
@@ -13,7 +13,6 @@ import List from '../src/components/list'
 export default function Home() {
   const [user, setUser] = useState<string>();
   const [repos, setRepos] = useState<Repository[]>();
-  const [loading, setLoading] = useState(false);
   const [repo, setRepo] = useState<Repository>();
   const [commits, setCommits] = useState<Commit[]>();
 
@@ -26,14 +25,14 @@ export default function Home() {
     setUser(username)
   }
 
-  const handleSearchCommits = async () => {
+  const handleSearchCommits = useCallback(async () => {
     const repositoriesResults = await getCommits(repo.name, user);
     setCommits(repositoriesResults);
-  }
+  }, [repo, user, setCommits])
 
   useEffect(() => {
     if (!!repo) handleSearchCommits()
-  }, [repo])
+  }, [repo, handleSearchCommits])
  
 
   return (

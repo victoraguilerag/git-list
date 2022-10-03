@@ -15,7 +15,7 @@ interface PropTypes {
 const Linked = ({ children, url}) => url ? <a href={url} target="_blank" rel="noreferrer">{children}</a>: <>{children}</>
 
 const ListItem = ({ content, onClick, item, url, avatar_url, date }: PropTypes) => {
-  const handleClick = () => onClick(item);
+  const handleClick = () => !!onClick && onClick(item);
   const dateString = new Date(date)
   return (
     <li onClick={handleClick} className={styles.listItem} key={item.id}>
