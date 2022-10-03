@@ -12,8 +12,12 @@ app.prepare().then(() => {
   const server = express();
 
   server.get("/repos", async (req, res) => {
-    const repos = await getRepos(req.query.username);
-    return res.json(repos);
+    try {
+      const repos = await getRepos(req.query.username);
+      return res.json(repos);
+    } catch(err) {
+      res.status(500).send()
+    }
   });
 
   server.get("/commits", async ({
@@ -22,9 +26,13 @@ app.prepare().then(() => {
       username
     }
   }, res) => {
-    const branch = await getBranch(repo, username);
-    const commits = await getCommits(repo, username, branch.commit.sha)
-    return res.json(commits);
+    try {
+      const branch = await getBranch(repo, username);
+      const commits = await getCommits(repo, username, branch.commit.sha)
+      return res.json(commits);
+    } catch(err) {
+      res.status(500).send()
+    }
   });
 
   server.all("*", (req, res) => {
