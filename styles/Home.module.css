@@ -141,6 +141,7 @@
 
 .listItem {
   background-color: white;
+  color: black;
   list-style: none;
   padding: 8px;
   border-radius: 4px;
