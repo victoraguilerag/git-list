@@ -16,7 +16,17 @@ const List = ({
   linked,
 }: PropTypes) => {
   return <ul className={styles.list}>
-    {items.map(item => <ListItem key={item.id} url={linked && item?.html_url} content={item.name || item.commit.message} onClick={onClick} item={item} avatar_url={item.author?.avatar_url} />)}
+    {
+      items.map(item => (
+        <ListItem
+          key={item.id}
+          url={linked && item?.html_url}
+          content={item.name || item.commit.message}
+          onClick={onClick}
+          item={item}
+          avatar_url={item.author?.avatar_url}
+        />
+      ))}
   </ul>;
 };
 
