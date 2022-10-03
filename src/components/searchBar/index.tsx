@@ -9,10 +9,10 @@ const SearchBar = ({
     const handleChange = (e) => setInput(e.target.value);
     const handleSubmit = () => onSearch(input);
     return (
-        <div className={styles.searchbar}>
+        <label className={styles.searchbar}>
             <input type="text" className={styles.searchinput} onChange={handleChange}/>
             <button className={styles.searchbutton} onClick={handleSubmit}>Search</button>
-        </div>
+        </label>
     )
 }
 

@@ -6,15 +6,17 @@ import ListItem from '../listItem';
 
 interface PropTypes {
   items: Commit[] | Repository[];
-  onClick: Dispatch<SetStateAction<Commit | Repository>>;
+  onClick?: Dispatch<SetStateAction<Commit | Repository>>;
+  linked?: boolean;
 }
 
 const List = ({
   items,
   onClick,
+  linked,
 }: PropTypes) => {
   return <ul className={styles.list}>
-    {items.map(item => <ListItem key={item.id} content={item.name} onClick={onClick} item={item} />)}
+    {items.map(item => <ListItem key={item.id} url={linked && item?.html_url} content={item.name || item.commit.message} onClick={onClick} item={item} avatar_url={item.author?.avatar_url} />)}
   </ul>;
 };
 
