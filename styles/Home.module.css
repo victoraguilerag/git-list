@@ -159,6 +159,7 @@
 
 .listItem .listAvatar {
   height: 40px;
+  max-height: 40px !important;
   border-radius: 50%;
 }
 
