@@ -18,28 +18,23 @@ export default function Home() {
   const [commits, setCommits] = useState<Commit[]>();
 
   const handleSearch = async (username) => {
-    const repositoriesResults = await getRepos(username || "victoraguilerag");
+    setUser("")
+    setRepos([])
+    setCommits([])
+    const repositoriesResults = await getRepos(username);
     setRepos(repositoriesResults);
-    setUser(username || "victoraguilerag")
+    setUser(username)
   }
 
   const handleSearchCommits = async () => {
-    console.log(user)
-    const repositoriesResults = await getCommits(repo.name || "aerolab-challenge", user);
+    const repositoriesResults = await getCommits(repo.name, user);
     setCommits(repositoriesResults);
-  }
-
-  const handleLoad = () => {
-    setLoading(true);
   }
 
   useEffect(() => {
     if (!!repo) handleSearchCommits()
   }, [repo])
  
-  useEffect(() => {
-    if (!loading) handleLoad()
-  }, [])
 
   return (
     <div className={styles.container}>
