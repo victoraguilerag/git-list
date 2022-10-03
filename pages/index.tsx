@@ -18,6 +18,7 @@ export default function Home() {
 
   const handleSearch = async (username) => {
     setUser("")
+    setRepo(undefined)
     setRepos([])
     setCommits([])
     const repositoriesResults = await getRepos(username);
