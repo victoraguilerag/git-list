@@ -1,5 +1,13 @@
 export interface Commit {
   id: string;
-  date: string;
-  creator: string;
+  author: {
+    avatar_url: string;
+  };
+  html_url: string;
+  commit: {
+    message: string;
+    commiter: {
+      date: string;
+    };
+  };
 }
