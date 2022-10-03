@@ -40,6 +40,7 @@ export default function Home() {
   useEffect(() => {
     if (!loading) handleLoad()
   }, [])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -49,13 +50,16 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <p>Title</p>
+        <h1>Git List</h1>
+        { !repos && <p>Search your github username to display a list of your public repositories</p>}
+        { repos && !repo && <p>Pick the repo you would like to display commits from</p>}
         <SearchBar onSearch={handleSearch} />
         <div className={styles.tags}>
-          {repo && <div className={styles.stag}>{repo.name}</div>}
+          {repo && <div className={styles.tag}>{repo.name}</div>}
+          {repo && <div className={styles.tag}>Main</div>}
         </div>
         {repos && !repo && <List items={repos} onClick={setRepo} />}
-        {!!commits && <List items={commits} onClick={setRepo} />}
+        {!!commits && <List linked items={commits} />}
       </main>
 
       <footer className={styles.footer}>
