@@ -21,6 +21,7 @@ const List = ({
         <ListItem
           key={item.id}
           url={linked && item?.html_url}
+          date={item.commit?.committer?.date}
           content={item.name || item.commit.message}
           onClick={onClick}
           item={item}

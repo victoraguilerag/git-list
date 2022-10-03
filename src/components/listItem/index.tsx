@@ -22,10 +22,10 @@ const ListItem = ({ content, onClick, item, url, avatar_url, date }: PropTypes) 
       {<Linked url={url}>
         <p>{content}</p>
       </Linked>}
-      { date && (<p>{dateString.toLocaleDateString()}</p>)}
+      { date && (<p className={styles.date}>{dateString.toLocaleString()}</p>)}
       {
         avatar_url && (
-          <Image src={avatar_url} alt={content} className={styles.listAvatar} />
+          <Image width="40px" height="40px" src={avatar_url} alt={content} className={styles.listAvatar} />
         )
       }
     </li>
